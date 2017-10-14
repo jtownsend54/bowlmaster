@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Ball : MonoBehaviour {
+	public Vector3 velocity;
+
 	// Use this for initialization
 	void Start () {
-		this.GetComponent<Rigidbody>().velocity = new Vector3 (0f, 0f, 200f);
+		this.GetComponent<Rigidbody>().velocity = velocity;
 		this.GetComponent<AudioSource> ().Play ();
 	}
 	
