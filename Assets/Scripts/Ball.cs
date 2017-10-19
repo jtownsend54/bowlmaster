@@ -10,8 +10,6 @@ public class Ball : MonoBehaviour {
 	void Start () {
 		ballBody = this.GetComponent<Rigidbody> ();
 		ballBody.useGravity = false;
-
-		//Launch (defaultVelocity);
 	}
 	
 	// Update is called once per frame

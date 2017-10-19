@@ -31,7 +31,6 @@ public class DragLaunch : MonoBehaviour {
 		change.y = endPos.z - startPos.z;
 		change.z = endPos.y - startPos.y;
 
-		//ball.GetComponent<Rigidbody> ().velocity = (endPos - startPos) / (endTime - startTime);
 		ball.Launch (change / (endTime - startTime));
 	}
 }
