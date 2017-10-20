@@ -23,6 +23,11 @@ public class DragLaunch : MonoBehaviour {
 	}
 
 	public void DragEnd() {
+		// Prevent user from manipulating the ball after its been launched
+		if (ball.isLaunched) {
+			return;
+		}
+
 		endPos = Input.mousePosition;
 		endTime = Time.time;
 		Vector3 change;
