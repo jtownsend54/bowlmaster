@@ -52,6 +52,7 @@
      <Compile Include="Assets\Scripts\BallPosition.cs" />
      <Compile Include="Assets\Scripts\CameraControl.cs" />
      <Compile Include="Assets\Scripts\DragLaunch.cs" />
+     <Compile Include="Assets\Scripts\Pin.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
