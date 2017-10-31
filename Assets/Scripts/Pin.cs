@@ -7,8 +7,7 @@ public class Pin : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//GetComponent<Transform> ().eulerAngles = new Vector3(0, 0, 5f);
-		Debug.Log(name + isStanding());
+
 	}
 	
 	// Update is called once per frame
@@ -18,7 +17,7 @@ public class Pin : MonoBehaviour {
 
 	public bool isStanding() {
 		Vector3 eulerAngles = GetComponent<Transform> ().eulerAngles;
-		float xAngle = getAngleDifference (eulerAngles.x);
+		float xAngle = getAngleDifference (eulerAngles.x + 90);
 		float zAngle = getAngleDifference (eulerAngles.z);
 
 		return zAngle <= thresholdLimit && xAngle <= thresholdLimit;
