@@ -4,8 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PinSetter : MonoBehaviour {
-	Text pinCount;
-	bool ballEnteredBox = false;
+	public Text pinCount;
+	public int lastStandingCount = -1;
+
+	private float lastChangeTime;
+	private bool ballEnteredBox = false;
 
 	// Use this for initialization
 	void Start () {
@@ -16,6 +19,7 @@ public class PinSetter : MonoBehaviour {
 	void Update () {
 		if (ballEnteredBox) {
 			pinCount.text = CountStanding ().ToString ();
+			CheckStanding ();
 		}
 	}
 
@@ -45,4 +49,25 @@ public class PinSetter : MonoBehaviour {
 
 		return count;
 	}
+
+	void CheckStanding() {
+		int count = CountStanding ();
+
+		if (lastStandingCount != count) {
+			lastStandingCount = count;
+			lastChangeTime = Time.time;
+			return;
+		}
+			
+		// If pin count has remained the same for at least 3 seconds
+		if (Time.time - lastChangeTime >= 3) {
+			PinsHaveSettled ();
+		}
+	}
+
+	void PinsHaveSettled() {
+		pinCount.color = Color.green;
+		ballEnteredBox = false;
+	}
 }
+
