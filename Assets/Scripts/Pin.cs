@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class Pin : MonoBehaviour {
 	public float thresholdLimit;
+	public float distanceToRaise = 50f;
+
+	private Vector3 raiseLowerAmount;
 
 	// Use this for initialization
 	void Start () {
-
+		raiseLowerAmount = new Vector3 (0, distanceToRaise, 0);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
+	}
+
+	public void Raise() {
+		if (isStanding ()) {
+			gameObject.GetComponent<Rigidbody> ().useGravity = false;
+			gameObject.GetComponent<Transform> ().position += raiseLowerAmount;
+		}
+	}
+
+	public void Lower() {
+		gameObject.GetComponent<Rigidbody> ().useGravity = true;
+		gameObject.GetComponent<Transform> ().position -= raiseLowerAmount;
 	}
 
 	public bool isStanding() {

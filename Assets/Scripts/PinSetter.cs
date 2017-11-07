@@ -6,19 +6,16 @@ using UnityEngine.UI;
 public class PinSetter : MonoBehaviour {
 	public Text pinCount;
 	public int lastStandingCount = -1;
-	public float distanceToRaise = 50f;
 	public GameObject pins;
 
 	private float lastChangeTime;
 	private bool ballEnteredBox = false;
 	private Ball ball;
-	private Vector3 raiseLowerAmount;
 
 	// Use this for initialization
 	void Start () {
 		pinCount = GameObject.Find("PinCount").GetComponent<Text> ();
 		ball = GameObject.FindObjectOfType<Ball> ();
-		raiseLowerAmount = new Vector3 (0, distanceToRaise, 0);
 	}
 	
 	// Update is called once per frame
@@ -82,11 +79,7 @@ public class PinSetter : MonoBehaviour {
 		Debug.Log ("Raise Pins");
 
 		foreach (Pin pin in pins.GetComponentsInChildren<Pin>()) {
-			if (pin.isStanding ()) {
-				pin.GetComponent<Rigidbody> ().useGravity = false;
-				pin.GetComponent<Transform> ().position += raiseLowerAmount;
-			}
-
+			pin.Raise ();
 		}
 	}
 
@@ -94,8 +87,7 @@ public class PinSetter : MonoBehaviour {
 		Debug.Log ("Lower Pins");
 
 		foreach (Pin pin in pins.GetComponentsInChildren<Pin>()) {
-			pin.GetComponent<Rigidbody> ().useGravity = true;
-			pin.GetComponent<Transform> ().position -= raiseLowerAmount;
+			pin.Lower ();
 		}
 	}
 
