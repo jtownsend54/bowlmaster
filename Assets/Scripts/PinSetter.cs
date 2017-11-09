@@ -7,6 +7,7 @@ public class PinSetter : MonoBehaviour {
 	public Text pinCount;
 	public int lastStandingCount = -1;
 	public GameObject pins;
+	public GameObject pinPrefab;
 
 	private float lastChangeTime;
 	private bool ballEnteredBox = false;
@@ -93,6 +94,8 @@ public class PinSetter : MonoBehaviour {
 
 	public void RenewPins() {
 		Debug.Log ("Renew Pins");
+		Destroy(GameObject.Find("Pins"));
+		Instantiate (pinPrefab, new Vector3 (0, 0, 1829), Quaternion.identity);
 	}
 }
 
