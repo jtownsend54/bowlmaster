@@ -8,6 +8,7 @@ public class PinSetter : MonoBehaviour {
 	public int lastStandingCount = -1;
 	public GameObject pins;
 	public GameObject pinPrefab;
+	public ScoreMaster scoreMaster;
 
 	private float lastChangeTime;
 	private bool ballEnteredBox = false;
@@ -65,6 +66,7 @@ public class PinSetter : MonoBehaviour {
 			
 		// If pin count has remained the same for at least 3 seconds
 		if (Time.time - lastChangeTime >= 3) {
+			scoreMaster.UpdateScore (lastStandingCount);
 			PinsHaveSettled ();
 		}
 	}
@@ -77,25 +79,21 @@ public class PinSetter : MonoBehaviour {
 	}
 
 	public void RaisePins() {
-		Debug.Log ("Raise Pins");
-
 		foreach (Pin pin in pins.GetComponentsInChildren<Pin>()) {
 			pin.Raise ();
 		}
 	}
 
 	public void LowerPins() {
-		Debug.Log ("Lower Pins");
-
 		foreach (Pin pin in pins.GetComponentsInChildren<Pin>()) {
 			pin.Lower ();
 		}
 	}
 
 	public void RenewPins() {
-		Debug.Log ("Renew Pins");
 		Destroy(GameObject.Find("Pins"));
-		Instantiate (pinPrefab, new Vector3 (0, 0, 1829), Quaternion.identity);
+
+		pins = Instantiate (pinPrefab, new Vector3 (0, 30, 1829), Quaternion.identity);
 	}
 }
 
