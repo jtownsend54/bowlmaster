@@ -15,19 +15,19 @@ public class ScoreMaster : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		throwsHistory = new List<string> ();
-		UpdateScore (4); // 6
-		UpdateScore (4); // 0 // 6
-
-		UpdateScore (0); // X // 6
-
-		UpdateScore (3); // 7
-		UpdateScore (2); // 1 // 32
-
-		UpdateScore (10); // 0
-		UpdateScore (0); // S // 32
-
-		UpdateScore (1); // 9 
-		UpdateScore (1); // 0 // 60
+//		UpdateScore (4); // 6
+//		UpdateScore (4); // 0 // 6
+//
+//		UpdateScore (0); // X // 6
+//
+//		UpdateScore (3); // 7
+//		UpdateScore (2); // 1 // 32
+//
+//		UpdateScore (10); // 0
+//		UpdateScore (0); // S // 32
+//
+//		UpdateScore (1); // 9 
+//		UpdateScore (1); // 0 // 60
 	}
 
 	// Update is called once per frame
