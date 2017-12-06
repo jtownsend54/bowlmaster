@@ -16,16 +16,25 @@ public class ActionMaster {
 
 		bowls [bowlCount - 1] = pins;
 
-		// Last frame, no strike or spare
-		if (bowlCount == 20 && (bowls [bowlCount - 2] + pins) < 10) {
-			return Action.EndGame;
-		}
-
-		// Last frame, picked up the spare
-		if (bowlCount == 20 && (bowls [bowlCount - 2] + pins) == 10) {
+		// If the player scores a strike on the first or second throw of the last frame
+		if ((bowlCount == 19 || bowlCount == 20) && pins == 10) {
 			bowlCount++;
 			return Action.Reset;
 		}
+
+		if (bowlCount == 20) {
+			// Last frame, no strike or spare
+			if ((bowls [bowlCount - 2] + pins) < 10) {
+				return Action.EndGame;
+			}
+
+			// Last frame, picked up the spare
+			if ((bowls [bowlCount - 2] + pins) == 10) {
+				bowlCount++;
+				return Action.Reset;
+			}
+		}
+
 
 		// Player made spare or two strikes to get to last possbile throw
 		if (bowlCount == 21) {
