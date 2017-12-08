@@ -88,6 +88,51 @@ public class ActionMasterTest {
 		Assert.AreEqual(endGame, actionMaster.Bowl (1));
 	}
 
+	[Test]
+	public void T09Bowl1021LastFrame()
+	{
+		ActionMaster actionMaster = new ActionMaster ();
+		BowlToEndFrame (actionMaster);
+
+		Assert.AreEqual(reset, actionMaster.Bowl (10));
+		Assert.AreEqual(tidy, actionMaster.Bowl (2));
+		Assert.AreEqual(endGame, actionMaster.Bowl (1));
+	}
+
+	[Test]
+	public void T10Bowl1001LastFrame()
+	{
+		ActionMaster actionMaster = new ActionMaster ();
+		BowlToEndFrame (actionMaster);
+
+		Assert.AreEqual(reset, actionMaster.Bowl (10));
+		Assert.AreEqual(tidy, actionMaster.Bowl (0));
+		Assert.AreEqual(endGame, actionMaster.Bowl (1));
+	}
+
+	[Test]
+	public void T11Bowl010010()
+	{
+		ActionMaster actionMaster = new ActionMaster ();
+
+		Assert.AreEqual(tidy, actionMaster.Bowl (0));
+		Assert.AreEqual(endTurn, actionMaster.Bowl (10));
+		Assert.AreEqual(tidy, actionMaster.Bowl (0));
+		Assert.AreEqual(endTurn, actionMaster.Bowl (10));
+	}
+
+	[Test]
+	public void T12BowlTurkeyLastFrame()
+	{
+		ActionMaster actionMaster = new ActionMaster ();
+
+		BowlToEndFrame (actionMaster);
+
+		Assert.AreEqual(reset, actionMaster.Bowl (10));
+		Assert.AreEqual(reset, actionMaster.Bowl (10));
+		Assert.AreEqual(endGame, actionMaster.Bowl (1));
+	}
+
 	private void BowlToEndFrame(ActionMaster actionMaster)
 	{
 		actionMaster.Bowl (3);

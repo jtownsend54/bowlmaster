@@ -17,7 +17,7 @@ public class ActionMaster {
 		bowls [bowlCount - 1] = pins;
 
 		// If the player scores a strike on the first or second throw of the last frame
-		if ((bowlCount == 19 || bowlCount == 20) && pins == 10) {
+		if (bowlCount == 19 && pins == 10) {
 			bowlCount++;
 			return Action.Reset;
 		}
@@ -28,8 +28,14 @@ public class ActionMaster {
 				return Action.EndGame;
 			}
 
-			// Last frame, picked up the spare
-			if ((bowls [bowlCount - 2] + pins) == 10) {
+			// Strike, then partial pins
+			if ((bowls [bowlCount - 2]) == 10 && pins < 10) {
+				bowlCount++;
+				return Action.Tidy;
+			}
+
+			// Picked up the spare using 19 and 20
+			if ((bowls [bowlCount - 2]) + pins >= 10) {
 				bowlCount++;
 				return Action.Reset;
 			}
@@ -40,16 +46,16 @@ public class ActionMaster {
 		if (bowlCount == 21) {
 			return Action.EndGame;
 		}
-			
-		// Strike
-		if (pins == 10) {
-			bowlCount += 2;
-			return Action.EndTurn;
-		}
 
 		// End frame and there are no pins left. -2 is finding the previous score in the frame
 		if (bowlCount % 2 == 0) {
 			bowlCount ++;
+			return Action.EndTurn;
+		}
+			
+		// Strike
+		if (pins == 10) {
+			bowlCount += 2;
 			return Action.EndTurn;
 		}
 
