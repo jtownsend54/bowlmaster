@@ -53,7 +53,10 @@
      <Compile Include="Assets\Scripts\BallPosition.cs" />
      <Compile Include="Assets\Scripts\CameraControl.cs" />
      <Compile Include="Assets\Scripts\DragLaunch.cs" />
+     <Compile Include="Assets\Scripts\GameMaster.cs" />
+     <Compile Include="Assets\Scripts\Gutter.cs" />
      <Compile Include="Assets\Scripts\Pin.cs" />
+     <Compile Include="Assets\Scripts\PinCounter.cs" />
      <Compile Include="Assets\Scripts\PinSetter.cs" />
      <Compile Include="Assets\Scripts\ScoreMaster.cs" />
  <Reference Include="UnityEngine.UI">

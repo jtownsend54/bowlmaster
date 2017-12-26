@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class ActionMaster {
 
 	public enum Action {Tidy, Reset, EndTurn, EndGame};
@@ -9,6 +10,22 @@ public class ActionMaster {
 	private int bowlCount = 1;
 	private int[] bowls = new int[21];
 
+	/**
+	 * Given a list of rolls, return the actions for each
+	 */
+	public List<Action> rollActions(List<int> rolls) {
+		List<Action> rollActions = new List<Action> ();
+
+		foreach (int roll in rolls) {
+			rollActions.Add (Bowl (roll));
+		}
+
+		return rollActions;
+	}
+
+	/**
+	 * Determine what action is needed based on a single roll
+	 */
 	public Action Bowl(int pins) {
 		if (pins > 10 || pins < 0) {
 			throw new UnityException ("Pins is out of bounds. Got " + pins);
