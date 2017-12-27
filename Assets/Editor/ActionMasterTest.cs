@@ -18,148 +18,196 @@ public class ActionMasterTest {
 	[Test]
 	public void T01StrikeReturnsEndTurn()
 	{
-		ActionMaster actionMaster = new ActionMaster ();
-		Assert.AreEqual(endTurn, actionMaster.Bowl (10));
+		List<int> rolls = new List<int> ();
+		rolls.Add (10);
+		Assert.AreEqual(endTurn, ActionMaster.NextAction (rolls));
 	}
 
 	[Test]
 	public void T02Bowl8ReturnsTidy()
 	{
-		ActionMaster actionMaster = new ActionMaster ();
-		Assert.AreEqual(tidy, actionMaster.Bowl (8));
+		List<int> rolls = new List<int> ();
+		rolls.Add (8);
+		Assert.AreEqual(tidy, ActionMaster.NextAction (rolls));
 	}
 
 	[Test]
 	public void T03SpareReturnsEndTurn()
 	{
-		ActionMaster actionMaster = new ActionMaster ();
-		Assert.AreEqual(tidy, actionMaster.Bowl (8));
-		Assert.AreEqual(endTurn, actionMaster.Bowl (2));
+		List<int> rolls = new List<int> ();
+		rolls.Add (8);
+		Assert.AreEqual(tidy, ActionMaster.NextAction (rolls));
+
+		rolls.Add (2);
+		Assert.AreEqual(endTurn, ActionMaster.NextAction (rolls));
 	}
 
 	[Test]
 	public void T04Bowl3And4ReturnsEndTurn()
 	{
-		ActionMaster actionMaster = new ActionMaster ();
-		Assert.AreEqual(tidy, actionMaster.Bowl (3));
-		Assert.AreEqual(endTurn, actionMaster.Bowl (4));
+		List<int> rolls = new List<int> ();
+		rolls.Add (3);
+		Assert.AreEqual(tidy, ActionMaster.NextAction (rolls));
+		rolls.Add (4);
+		Assert.AreEqual(endTurn, ActionMaster.NextAction (rolls));
 	}
 
 	[Test]
 	public void T05Bowl22LastFrame()
 	{
-		ActionMaster actionMaster = new ActionMaster ();
-		BowlToEndFrame (actionMaster);
+		List<int> rolls = new List<int> ();
+		rolls = BowlToEndFrame (rolls);
 
-		Assert.AreEqual(tidy, actionMaster.Bowl (2));
-		Assert.AreEqual(endGame, actionMaster.Bowl (2));
+		rolls.Add (2);
+		Assert.AreEqual(tidy, ActionMaster.NextAction (rolls));
+
+		rolls.Add (2);
+		Assert.AreEqual(endGame, ActionMaster.NextAction (rolls));
 	}
 
 	[Test]
 	public void T06Bowl5510LastFrame()
 	{
-		ActionMaster actionMaster = new ActionMaster ();
-		BowlToEndFrame (actionMaster);
+		List<int> rolls = new List<int> ();
+		rolls = BowlToEndFrame (rolls);
 
-		Assert.AreEqual(tidy, actionMaster.Bowl (5));
-		Assert.AreEqual(reset, actionMaster.Bowl (5));
-		Assert.AreEqual(endGame, actionMaster.Bowl (10));
+		rolls.Add (5);
+		Assert.AreEqual(tidy, ActionMaster.NextAction (rolls));
+
+		rolls.Add (5);
+		Assert.AreEqual(reset, ActionMaster.NextAction (rolls));
+
+		rolls.Add (10);
+		Assert.AreEqual(endGame, ActionMaster.NextAction (rolls));
 	}
 
 	[Test]
 	public void T07Bowl101010LastFrame()
 	{
-		ActionMaster actionMaster = new ActionMaster ();
-		BowlToEndFrame (actionMaster);
+		List<int> rolls = new List<int> ();
+		rolls = BowlToEndFrame (rolls);
 
-		Assert.AreEqual(reset, actionMaster.Bowl (10));
-		Assert.AreEqual(reset, actionMaster.Bowl (10));
-		Assert.AreEqual(endGame, actionMaster.Bowl (10));
+		rolls.Add (10);
+		Assert.AreEqual(reset, ActionMaster.NextAction (rolls));
+
+		rolls.Add (10);
+		Assert.AreEqual(reset, ActionMaster.NextAction (rolls));
+
+		rolls.Add (10);
+		Assert.AreEqual(endGame, ActionMaster.NextAction (rolls));
 	}
 
 	[Test]
 	public void T08Bowl10101LastFrame()
 	{
-		ActionMaster actionMaster = new ActionMaster ();
-		BowlToEndFrame (actionMaster);
+		List<int> rolls = new List<int> ();
+		rolls = BowlToEndFrame (rolls);
 
-		Assert.AreEqual(reset, actionMaster.Bowl (10));
-		Assert.AreEqual(reset, actionMaster.Bowl (10));
-		Assert.AreEqual(endGame, actionMaster.Bowl (1));
+		rolls.Add (10);
+		Assert.AreEqual(reset, ActionMaster.NextAction (rolls));
+
+		rolls.Add (10);
+		Assert.AreEqual(reset, ActionMaster.NextAction (rolls));
+
+		rolls.Add (10);
+		Assert.AreEqual(endGame, ActionMaster.NextAction (rolls));
 	}
 
 	[Test]
 	public void T09Bowl1021LastFrame()
 	{
-		ActionMaster actionMaster = new ActionMaster ();
-		BowlToEndFrame (actionMaster);
+		List<int> rolls = new List<int> ();
+		rolls = BowlToEndFrame (rolls);
 
-		Assert.AreEqual(reset, actionMaster.Bowl (10));
-		Assert.AreEqual(tidy, actionMaster.Bowl (2));
-		Assert.AreEqual(endGame, actionMaster.Bowl (1));
+		rolls.Add (10);
+		Assert.AreEqual(reset, ActionMaster.NextAction (rolls));
+
+		rolls.Add (2);
+		Assert.AreEqual(tidy, ActionMaster.NextAction (rolls));
+
+		rolls.Add (1);
+		Assert.AreEqual(endGame, ActionMaster.NextAction (rolls));
 	}
 
 	[Test]
 	public void T10Bowl1001LastFrame()
 	{
-		ActionMaster actionMaster = new ActionMaster ();
-		BowlToEndFrame (actionMaster);
+		List<int> rolls = new List<int> ();
+		rolls = BowlToEndFrame (rolls);
 
-		Assert.AreEqual(reset, actionMaster.Bowl (10));
-		Assert.AreEqual(tidy, actionMaster.Bowl (0));
-		Assert.AreEqual(endGame, actionMaster.Bowl (1));
+		rolls.Add (10);
+		Assert.AreEqual(reset, ActionMaster.NextAction (rolls));
+
+		rolls.Add (0);
+		Assert.AreEqual(tidy, ActionMaster.NextAction (rolls));
+
+		rolls.Add (1);
+		Assert.AreEqual(endGame, ActionMaster.NextAction (rolls));
 	}
 
 	[Test]
 	public void T11Bowl010010()
 	{
-		ActionMaster actionMaster = new ActionMaster ();
+		List<int> rolls = new List<int> ();
 
-		Assert.AreEqual(tidy, actionMaster.Bowl (0));
-		Assert.AreEqual(endTurn, actionMaster.Bowl (10));
-		Assert.AreEqual(tidy, actionMaster.Bowl (0));
-		Assert.AreEqual(endTurn, actionMaster.Bowl (10));
+		rolls.Add (0);
+		Assert.AreEqual(tidy, ActionMaster.NextAction (rolls));
+
+		rolls.Add (10);
+		Assert.AreEqual(endTurn, ActionMaster.NextAction (rolls));
+
+		rolls.Add (0);
+		Assert.AreEqual(tidy, ActionMaster.NextAction (rolls));
+
+		rolls.Add (10);
+		Assert.AreEqual(endTurn, ActionMaster.NextAction (rolls));
 	}
 
 	[Test]
 	public void T12BowlTurkeyLastFrame()
 	{
-		ActionMaster actionMaster = new ActionMaster ();
+		List<int> rolls = new List<int> ();
+		rolls = BowlToEndFrame (rolls);
 
-		BowlToEndFrame (actionMaster);
+		rolls.Add (10);
+		Assert.AreEqual(reset, ActionMaster.NextAction (rolls));
 
-		Assert.AreEqual(reset, actionMaster.Bowl (10));
-		Assert.AreEqual(reset, actionMaster.Bowl (10));
-		Assert.AreEqual(endGame, actionMaster.Bowl (1));
+		rolls.Add (10);
+		Assert.AreEqual(reset, ActionMaster.NextAction (rolls));
+
+		rolls.Add (1);
+		Assert.AreEqual(endGame, ActionMaster.NextAction (rolls));
 	}
 
-	private void BowlToEndFrame(ActionMaster actionMaster)
+	private List<int> BowlToEndFrame(List<int> rolls)
 	{
-		actionMaster.Bowl (3);
-		actionMaster.Bowl (4);
+		rolls.Add (3);
+		rolls.Add (4);
 
-		actionMaster.Bowl (3);
-		actionMaster.Bowl (4);
+		rolls.Add (3);
+		rolls.Add (4);
 
-		actionMaster.Bowl (3);
-		actionMaster.Bowl (4);
+		rolls.Add (3);
+		rolls.Add (4);
 
-		actionMaster.Bowl (3);
-		actionMaster.Bowl (4);
+		rolls.Add (3);
+		rolls.Add (4);
 
-		actionMaster.Bowl (3);
-		actionMaster.Bowl (4);
+		rolls.Add (3);
+		rolls.Add (4);
 
-		actionMaster.Bowl (3);
-		actionMaster.Bowl (4);
+		rolls.Add (3);
+		rolls.Add (4);
 
-		actionMaster.Bowl (3);
-		actionMaster.Bowl (4);
+		rolls.Add (3);
+		rolls.Add (4);
 
-		actionMaster.Bowl (3);
-		actionMaster.Bowl (4);
+		rolls.Add (3);
+		rolls.Add (4);
 
-		actionMaster.Bowl (3);
-		actionMaster.Bowl (4);
+		rolls.Add (3);
+		rolls.Add (4);
+
+		return rolls;
 	}
 }

@@ -13,20 +13,23 @@ public class ActionMaster {
 	/**
 	 * Given a list of rolls, return the actions for each
 	 */
-	public List<Action> rollActions(List<int> rolls) {
-		List<Action> rollActions = new List<Action> ();
+	public static Action NextAction(List<int> rolls) {
+		//List<Action> rollActions = new List<Action> ();
+		ActionMaster actionMaster = new ActionMaster ();
+		Action lastAction = new Action();
 
 		foreach (int roll in rolls) {
-			rollActions.Add (Bowl (roll));
+			lastAction = actionMaster.Bowl (roll);
+			//rollActions.Add (lastAction);
 		}
 
-		return rollActions;
+		return lastAction;
 	}
 
 	/**
 	 * Determine what action is needed based on a single roll
 	 */
-	public Action Bowl(int pins) {
+	protected Action Bowl(int pins) {
 		if (pins > 10 || pins < 0) {
 			throw new UnityException ("Pins is out of bounds. Got " + pins);
 		}

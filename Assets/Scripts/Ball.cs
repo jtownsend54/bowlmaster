@@ -28,8 +28,7 @@ public class Ball : MonoBehaviour {
 		this.GetComponent<AudioSource> ().Play ();
 	}
 
-	public void Reset()
-	{
+	public void Reset() {
 		isLaunched 						= false;
 		ballBody.useGravity 			= false;
 		ballBody.velocity 				= new Vector3(0,0,0);
