@@ -14,13 +14,11 @@ public class ActionMaster {
 	 * Given a list of rolls, return the actions for each
 	 */
 	public static Action NextAction(List<int> rolls) {
-		//List<Action> rollActions = new List<Action> ();
 		ActionMaster actionMaster = new ActionMaster ();
 		Action lastAction = new Action();
 
 		foreach (int roll in rolls) {
 			lastAction = actionMaster.Bowl (roll);
-			//rollActions.Add (lastAction);
 		}
 
 		return lastAction;
@@ -29,7 +27,7 @@ public class ActionMaster {
 	/**
 	 * Determine what action is needed based on a single roll
 	 */
-	protected Action Bowl(int pins) {
+	private Action Bowl(int pins) {
 		if (pins > 10 || pins < 0) {
 			throw new UnityException ("Pins is out of bounds. Got " + pins);
 		}

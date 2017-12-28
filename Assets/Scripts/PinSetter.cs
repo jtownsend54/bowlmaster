@@ -60,7 +60,6 @@ public class PinSetter : MonoBehaviour {
 	public void LowerPins() {
 		foreach (Pin pin in pins.GetComponentsInChildren<Pin>()) {
 			pin.Lower ();
-			pin.transform.rotation = Quaternion.Euler(-90,0,0);
 		}
 	}
 

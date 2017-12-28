@@ -27,7 +27,8 @@ public class Pin : MonoBehaviour {
 
 	public void Lower() {
 		gameObject.GetComponent<Rigidbody> ().useGravity = true;
-		gameObject.GetComponent<Transform> ().position -= raiseLowerAmount;
+		transform.position -= raiseLowerAmount;
+		transform.rotation = Quaternion.Euler(-90,0,0);
 	}
 
 	public bool isStanding() {
