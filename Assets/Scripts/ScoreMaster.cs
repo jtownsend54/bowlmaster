@@ -8,11 +8,62 @@ using UnityEngine.UI;
  * Generate the scores for individual frames given a list of roles
  */
 public class ScoreMaster {
+	public static List<int> scoreCumulative(List<int> rolls) {
+		List<int> scores = new List<int> ();
+//		ScoreMaster scoreMaster = new ScoreMaster ();
+		int bowlCount = 0;
+		int totalRolls = 0;
+		int cumulative = 0;
+
+		foreach (int roll in rolls) {
+			bowlCount++;
+			totalRolls++;
+			//scores.Add(scoreMaster.generateCumulative (scores, roll));
+			// Strike
+			if (bowlCount == 1 && roll == 10) {
+				// Bring this check inside the outer if so all strikes land here. If our last bowl
+				// or second to last bowl is a strike, we do not want to update the score yet
+				// because we do not have enough information
+				if (rolls.Count >= totalRolls + 2) {
+					cumulative += roll;
+					cumulative += rolls [totalRolls];
+					cumulative += rolls [totalRolls + 1];
+				}
+
+				// Set this to two so it gets reset to 0 later
+				bowlCount = 2;
+			} else if (bowlCount == 2 && roll + rolls[totalRolls - 2] == 10) {
+				// Same as strike logic above, if we do not have a next bowl, we do not
+				// have enough information to score after a spare
+				if (rolls.Count >= totalRolls + 1) {
+					cumulative += roll;
+					cumulative += rolls [totalRolls];
+				}
+			} else {
+				cumulative += roll;
+			}
+
+			scores.Add (cumulative);
+
+			if (bowlCount == 2) {
+				bowlCount = 0;
+			}
+		}
+
+		Debug.Log (scores);
+
+		return scores;
+	}
+
 	public static List<int> scoreFrames(List<int> rolls) {
 		List<int> frameScores = new List<int> ();
 
 		return frameScores;
 	}
+
+//	private int generateCumulative(List<int> scores, int roll) {
+//
+//	}
 
 //	public void UpdateScore(int pinsStanding) {
 //		
