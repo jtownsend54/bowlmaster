@@ -14,11 +14,16 @@ public class ScoreMaster {
 		int bowlCount = 0;
 		int totalRolls = 0;
 		int cumulative = 0;
+		int frame = 1;
 
 		foreach (int roll in rolls) {
 			bowlCount++;
 			totalRolls++;
-			//scores.Add(scoreMaster.generateCumulative (scores, roll));
+
+			if (frame > 10) {
+				continue;
+			}
+				
 			// Strike
 			if (bowlCount == 1 && roll == 10) {
 				// Bring this check inside the outer if so all strikes land here. If our last bowl
@@ -46,11 +51,10 @@ public class ScoreMaster {
 			scores.Add (cumulative);
 
 			if (bowlCount == 2) {
+				frame++;
 				bowlCount = 0;
 			}
 		}
-
-		Debug.Log (scores);
 
 		return scores;
 	}

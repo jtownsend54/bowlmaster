@@ -114,4 +114,40 @@ public class ScoreMasterTest {
 
 		Assert.AreEqual (295, scores[scores.Count - 1]);
 	}
+
+	[Test]
+	public void T12LastFrame54 () {
+		int[] rolls = {10, 10, 10, 10, 10, 10, 10, 10, 10, 5, 4};
+
+		List<int> scores = ScoreMaster.scoreCumulative(rolls.ToList());
+
+		Assert.AreEqual (263, scores[scores.Count - 1]);
+	}
+
+	[Test]
+	public void T13LastFrameX42 () {
+		int[] rolls = {10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 4, 2};
+
+		List<int> scores = ScoreMaster.scoreCumulative(rolls.ToList());
+
+		Assert.AreEqual (280, scores[scores.Count - 1]);
+	}
+
+	[Test]
+	public void T14MiscScores () {
+		int[] rolls = {4, 5,  10,  4, 6,  3, 1,  10,  10,  8, 0,  9, 1,  10,  6, 0};
+
+		List<int> scores = ScoreMaster.scoreCumulative(rolls.ToList());
+
+		Assert.AreEqual (142, scores[scores.Count - 1]);
+	}
+
+	[Test]
+	public void T15MiscScoresSpare () {
+		int[] rolls = {4, 5,  10,  4, 6,  3, 1,  10,  10,  8, 0,  9, 1,  10,  6, 4, 2};
+
+		List<int> scores = ScoreMaster.scoreCumulative(rolls.ToList());
+
+		Assert.AreEqual (152, scores[scores.Count - 1]);
+	}
 }
