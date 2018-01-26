@@ -11,49 +11,33 @@ public class ScoreMaster {
 	public static List<int> scoreCumulative(List<int> rolls) {
 		List<int> scores = new List<int> ();
 //		ScoreMaster scoreMaster = new ScoreMaster ();
-		int bowlCount = 0;
-		int totalRolls = 0;
 		int cumulative = 0;
-		int frame = 1;
 
-		foreach (int roll in rolls) {
-			bowlCount++;
-			totalRolls++;
-
-			if (frame > 10) {
-				continue;
+		for (int i = 1; i < rolls.Count; i+=2) {
+			if (scores.Count == 10) {
+				break;
 			}
 				
+			if (rolls [i-1] + rolls [i] < 10) {
+				scores.Add (cumulative += rolls [i-1] + rolls [i]);
+			}
+				
+			// Not enough for a spare or strike, just get out early
+			if (rolls.Count - 1 <= i) {
+				break;
+			}
+
 			// Strike
-			if (bowlCount == 1 && roll == 10) {
-				// Bring this check inside the outer if so all strikes land here. If our last bowl
-				// or second to last bowl is a strike, we do not want to update the score yet
-				// because we do not have enough information
-				if (rolls.Count >= totalRolls + 2) {
-					cumulative += roll;
-					cumulative += rolls [totalRolls];
-					cumulative += rolls [totalRolls + 1];
-				}
-
-				// Set this to two so it gets reset to 0 later
-				bowlCount = 2;
-			} else if (bowlCount == 2 && roll + rolls[totalRolls - 2] == 10) {
-				// Same as strike logic above, if we do not have a next bowl, we do not
-				// have enough information to score after a spare
-				if (rolls.Count >= totalRolls + 1) {
-					cumulative += roll;
-					cumulative += rolls [totalRolls];
-				}
-			} else {
-				cumulative += roll;
-			}
-
-			scores.Add (cumulative);
-
-			if (bowlCount == 2) {
-				frame++;
-				bowlCount = 0;
-			}
+			if (rolls[i-1] == 10 && rolls.Count >= i + 2) {
+				i--;
+				cumulative += 10;
+				cumulative += rolls[i+1];
+				scores.Add (cumulative += rolls[i+2]);
+			} else if (rolls[i-1] + rolls[i] == 10) {
+				cumulative += 10;
+				scores.Add (cumulative += rolls[i+1]);
+			
+			} 
 		}
 
 		return scores;

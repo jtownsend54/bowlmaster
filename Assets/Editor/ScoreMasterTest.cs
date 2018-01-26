@@ -22,7 +22,7 @@ public class ScoreMasterTest {
 
 		List<int> scores = ScoreMaster.scoreCumulative(rolls.ToList());
 
-		Assert.AreEqual (1, scores[scores.Count - 1]);
+		Assert.AreEqual (0, scores.Count);
 	}
 
 	[Test]
@@ -40,7 +40,7 @@ public class ScoreMasterTest {
 
 		List<int> scores = ScoreMaster.scoreCumulative(rolls.ToList());
 
-		Assert.AreEqual (15, scores[scores.Count - 1]);
+		Assert.AreEqual (14, scores[scores.Count - 1]);
 	}
 
 	[Test]
@@ -76,12 +76,12 @@ public class ScoreMasterTest {
 
 		List<int> scores = ScoreMaster.scoreCumulative(rolls.ToList());
 
-		Assert.AreEqual (12, scores[scores.Count - 1]);
+		Assert.AreEqual (11, scores[scores.Count - 1]);
 	}
 
 	[Test]
 	public void T08Roll9119XX54 () {
-		int[] rolls = {9, 1, 1, 9, 10, 10, 5, 4};
+		int[] rolls = {9, 1,  1, 9,  10,  10,  5, 4};
 
 		List<int> scores = ScoreMaster.scoreCumulative(rolls.ToList());
 
@@ -89,12 +89,12 @@ public class ScoreMasterTest {
 	}
 
 	[Test]
-	public void T09Roll1129 () {
+	public void T09Roll1128 () {
 		int[] rolls = {1, 1, 2, 8};
 
 		List<int> scores = ScoreMaster.scoreCumulative(rolls.ToList());
 
-		Assert.AreEqual (4, scores[scores.Count - 1]);
+		Assert.AreEqual (2, scores[scores.Count - 1]);
 	}
 
 	[Test]

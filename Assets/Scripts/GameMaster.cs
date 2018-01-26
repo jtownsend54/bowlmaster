@@ -24,11 +24,10 @@ public class GameMaster : MonoBehaviour {
 		// Add the new roll to our list
 		rolls.Add(pins);
 
-//		// Determine the action we need to take
-//		List<ActionMaster.Action> actions = ActionMaster.NextAction (rolls);
-
 		// Pass our action to the pinSetter/animator to reset, renew, or raise pins
 		pinSetter.doAnimation (ActionMaster.NextAction (rolls));
+
+
 
 		// Reset the ball
 		ball.Reset();
