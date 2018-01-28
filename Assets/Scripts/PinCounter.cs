@@ -21,7 +21,6 @@ public class PinCounter : MonoBehaviour {
 	public void StartCounting() {
 		ballLeftBox = true;
 		standingBeforeBallIsThrown = CountStanding ();
-		Debug.Log ("Here we go, we have " + standingBeforeBallIsThrown + " pins at the start");
 	}
 
 	int CountStanding() {
@@ -56,7 +55,6 @@ public class PinCounter : MonoBehaviour {
 		ballLeftBox = false;
 		GameMaster gameMaster = GameObject.Find ("GameMaster").GetComponent<GameMaster> ();
 		gameMaster.BallThrown(standingBeforeBallIsThrown - lastStandingCount);
-		Debug.Log("Bowled a: " + (standingBeforeBallIsThrown - lastStandingCount));
 		lastStandingCount = -1;
 	}
 }

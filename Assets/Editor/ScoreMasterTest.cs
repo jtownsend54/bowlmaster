@@ -150,4 +150,13 @@ public class ScoreMasterTest {
 
 		Assert.AreEqual (152, scores[scores.Count - 1]);
 	}
+
+	[Test]
+	public void T16NoScore () {
+		int[] rolls = {0, 0};
+
+		List<int> scores = ScoreMaster.scoreCumulative(rolls.ToList());
+
+		Assert.AreEqual (0, scores[scores.Count - 1]);
+	}
 }

@@ -5,13 +5,13 @@ using UnityEngine;
 public class GameMaster : MonoBehaviour {
 	public PinSetter pinSetter;
 	public Ball ball;
+	public ScoreDisplay scoreDisplay;
 
-	private ScoreMaster scoreMaster;
 	private List<int> rolls;
+	private List<int> scores;
 
 	// Use this for initialization
 	void Start () {
-		scoreMaster = new ScoreMaster ();
 		rolls = new List<int> ();
 	}
 	
@@ -27,7 +27,10 @@ public class GameMaster : MonoBehaviour {
 		// Pass our action to the pinSetter/animator to reset, renew, or raise pins
 		pinSetter.doAnimation (ActionMaster.NextAction (rolls));
 
+		scores = ScoreMaster.scoreCumulative (rolls);
 
+		scoreDisplay.AddFrameScores (scores);
+		scoreDisplay.AddRoll (rolls);
 
 		// Reset the ball
 		ball.Reset();
